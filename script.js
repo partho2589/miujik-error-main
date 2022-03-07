@@ -32,8 +32,8 @@ const showArtists = (data) => {
   </div>
   <div class="info-container">
     <h1>${artist.strArtist}</h1>
-    <p>Country: ${artist.strCountry}</p>
-    <p>Style: ${artist.strGenre}</p>
+    <p>Country: ${artist.strCountry ? artist.strCountry :"not found"}</p>
+    <p>Style: ${artist.strGenre ? artist.strGenre : 'not found~'}</p>
   </div>
   <button class="album-button">
     <i class="fa-solid fa-compact-disc"></i>
@@ -46,7 +46,7 @@ const showArtists = (data) => {
 
 const fetchAlbums = (id) => {
   const url = `https://theaudiodb.com/api/v1/json/2/artist.php?i=${id}`;
- 
+ console.log(url)
   fetch(url)
     .then((res) => res.json())
         .then((data) => showAlbum(data));
@@ -61,12 +61,12 @@ const showAlbum = ({artists}) => {
     div.innerHTML = `
         <div class="album-image-container">
           <img
-            src="${album.strAlbumThumb}"
+            src="${album.strArtistThumb}"
             alt=""
           />
         </div>
         <div class="album-name">
-          <h3>${album.strAlbum}</h3>
+          <h3>Name: ${album.strArtist}</h3>
         </div>
       `;
 
